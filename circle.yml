@@ -17,7 +17,7 @@ dependencies:
       - sudo rsync -vrtza ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
       - sudo echo "nameserver 8.8.8.8" > /mnt/gentoo/etc/resolv.conf
       - sudo chroot /mnt/gentoo /bin/bash emerge-webrsync
-      - sudo chroot /mnt/gentoo /bin/env MAKEOPTS=1 emerge -1 cmake
+      - sudo chroot /mnt/gentoo emerge -1 cmake
       - sudo chroot /mnt/gentoo emerge -q x11-wm/i3 x11-misc/i3status
       - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
