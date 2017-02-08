@@ -1,6 +1,6 @@
 dependencies:
     pre:
-      - wget -c http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20170202.tar.bz2
+      - wget -nv -c http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20170202.tar.bz2
       - sudo mkdir /mnt/gentoo
 # sudo tar xjpf /home/ubuntu/stage3-amd64-20170202.tar.bz2 -C /mnt/gentoo --exclude=./dev
       - sudo tar xjpf ~/${CIRCLE_PROJECT_REPONAME}/stage3-amd64-20170202.tar.bz2 -C /mnt/gentoo
