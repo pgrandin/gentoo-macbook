@@ -10,5 +10,5 @@ dependencies:
       - sudo touch /mnt/gentoo/dev/null
       - sudo chmod 0777 /mnt/gentoo/dev/null
       - sudo dd if=/dev/urandom of=/mnt/gentoo/dev/urandom count=512
-      - sudo rsync ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
+      - sudo rsync -vrtza ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
       - sudo chroot /mnt/gentoo /bin/bash /part2.sh
