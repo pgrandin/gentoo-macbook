@@ -9,8 +9,8 @@ dependencies:
       - sudo tar xjpf ~/${CIRCLE_PROJECT_REPONAME}/stage3-amd64-20170202.tar.bz2 -C /mnt/gentoo; true
       - cd /mnt/gentoo; sudo patch -p0 < ~/$CIRCLE_PROJECT_REPONAME/emerge.patch
       - sudo mount -t proc /proc /mnt/gentoo/proc
-      - sudo mount -t tmpfs tmps /mnt/gentoo/var/tmp
-      - sudo mount -t tmpfs tmps /mnt/gentoo/var/cache
+        # - sudo mount -t tmpfs tmps /mnt/gentoo/var/tmp
+        # - sudo mount -t tmpfs tmps /mnt/gentoo/var/cache
       - sudo touch /mnt/gentoo/dev/null
       - sudo chmod 0777 /mnt/gentoo/dev/null
       - sudo dd if=/dev/urandom of=/mnt/gentoo/dev/urandom count=512
