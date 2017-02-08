@@ -7,6 +7,8 @@ dependencies:
       - cd /mnt/gentoo; sudo patch -p0 < ~/$CIRCLE_PROJECT_REPONAME/emerge.patch
       - sudo cp ~/${CIRCLE_PROJECT_REPONAME}/part2.sh /mnt/gentoo/
       - sudo mount -t proc /proc /mnt/gentoo/proc
-      - sudo chmod 077 /mnt/gentoo/dev/null
+      - sudo touch /mnt/gentoo/dev/null
+      - sudo chmod 0777 /mnt/gentoo/dev/null
       - sudo dd if=/dev/urandom of=/mnt/gentoo/dev/urandom count=512
+      - sudo rsync ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
       - sudo chroot /mnt/gentoo /bin/bash /part2.sh
