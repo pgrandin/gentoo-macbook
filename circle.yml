@@ -17,9 +17,9 @@ dependencies:
       - sudo rsync -vrtza ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
       - sudo echo "nameserver 8.8.8.8" > /mnt/gentoo/etc/resolv.conf
       - sudo chroot /mnt/gentoo /bin/bash emerge-webrsync
-      - sudo chroot /mnt/gentoo /bin/bash 'MAKEOPTS="-j32" emerge -q x11-wm/i3 x11-misc/i3status'
-      - sudo chroot /mnt/gentoo /bin/bash 'MAKEOPTS="-j32" emerge -q x11-terms/terminator'
-      - sudo chroot /mnt/gentoo /bin/bash 'MAKEOPTS="-j32" emerge -q x11-misc/slim'
-      - sudo chroot /mnt/gentoo /bin/bash 'MAKEOPTS="-j32" emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools'
-      - sudo chroot /mnt/gentoo /bin/bash 'MAKEOPTS="-j32" emerge -q media-sound/alsa-utils'
-      - sudo chroot /mnt/gentoo /bin/bash 'MAKEOPTS="-j32" emerge -q www-client/firefox'
+      - sudo chroot /mnt/gentoo /bin/bash emerge -q x11-wm/i3 x11-misc/i3status
+      - sudo chroot /mnt/gentoo /bin/bash emerge -q x11-terms/terminator
+      - sudo chroot /mnt/gentoo /bin/bash emerge -q x11-misc/slim
+      - sudo chroot /mnt/gentoo /bin/bash emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
+      - sudo chroot /mnt/gentoo /bin/bash emerge -q media-sound/alsa-utils
+      - sudo chroot /mnt/gentoo /bin/bash emerge -q www-client/firefox
