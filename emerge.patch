@@ -1,17 +1,17 @@
---- usr/lib64/python3.4/site-packages/_emerge/main.py   2017-02-08 02:11:33.841427283 +0000
-+++ usr/lib64/python3.4/site-packages/_emerge/main.py   2017-02-08 02:07:18.822829413 +0000
+--- usr/lib64/python3.4/site-packages/_emerge/main.py 2017-02-08 05:03:39.187753844 +0000
++++ usr/lib64/python3.4/site-packages/_emerge/main.py	2017-02-08 05:03:52.595723007 +0000
 @@ -1167,12 +1167,12 @@
-                        writemsg_level("Failed to validate a sane '/dev'.\n"
-                                  "'/dev/null' is not a device file.\n",
-                                  level=logging.ERROR, noiselevel=-1)
--                       return 1
-+                       # return 1
-        except OSError:
-                writemsg_level("Failed to validate a sane '/dev'.\n"
-                                 "'/dev/null' does not exist.\n",
-                                 level=logging.ERROR, noiselevel=-1)
--               return 1
-+               # return 1
+ 			writemsg_level("Failed to validate a sane '/dev'.\n"
+ 				  "'/dev/null' is not a device file.\n",
+ 				  level=logging.ERROR, noiselevel=-1)
+-			return 1
++			# return 1
+ 	except OSError:
+ 		writemsg_level("Failed to validate a sane '/dev'.\n"
+ 				 "'/dev/null' does not exist.\n",
+ 				 level=logging.ERROR, noiselevel=-1)
+-		return 1
++		# return 1
  
-        # Verify that BASH process substitution works as another cheap early
-        # filter. Process substitution uses '/dev/fd'.
+ 	# Verify that BASH process substitution works as another cheap early
+ 	# filter. Process substitution uses '/dev/fd'.
