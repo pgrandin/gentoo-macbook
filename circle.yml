@@ -1,3 +1,6 @@
+general:
+    artifacts:
+      - "/mnt/gentoo/usr/portage/packages"
 dependencies:
     pre:
       - wget -nv -c http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20170202.tar.bz2
@@ -5,7 +8,6 @@ dependencies:
 # sudo tar xjpf /home/ubuntu/stage3-amd64-20170202.tar.bz2 -C /mnt/gentoo --exclude=./dev
       - sudo tar xjpf ~/${CIRCLE_PROJECT_REPONAME}/stage3-amd64-20170202.tar.bz2 -C /mnt/gentoo; true
       - cd /mnt/gentoo; sudo patch -p0 < ~/$CIRCLE_PROJECT_REPONAME/emerge.patch
-      - sudo cp ~/${CIRCLE_PROJECT_REPONAME}/part2.sh /mnt/gentoo/
       - sudo mount -t proc /proc /mnt/gentoo/proc
       - sudo mount -t tmpfs tmps /mnt/gentoo/var/tmp
       - sudo mount -t tmpfs tmps /mnt/gentoo/var/cache
@@ -13,4 +15,11 @@ dependencies:
       - sudo chmod 0777 /mnt/gentoo/dev/null
       - sudo dd if=/dev/urandom of=/mnt/gentoo/dev/urandom count=512
       - sudo rsync -vrtza ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
-      - sudo chroot /mnt/gentoo /bin/bash /part2.sh
+      - sudo echo "nameserver 8.8.8.8" > /mnt/gentoo/etc/resolv.conf
+      - sudo chroot /mnt/gentoo /bin/bash emerge-webrsync
+      - sudo chroot /mnt/gentoo /bin/bash MAKEOPTS="-j32" emerge -q x11-wm/i3 x11-misc/i3status
+      - sudo chroot /mnt/gentoo /bin/bash MAKEOPTS="-j32" emerge -q x11-terms/terminator
+      - sudo chroot /mnt/gentoo /bin/bash MAKEOPTS="-j32" emerge -q x11-misc/slim
+      - sudo chroot /mnt/gentoo /bin/bash MAKEOPTS="-j32" emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
+      - sudo chroot /mnt/gentoo /bin/bash MAKEOPTS="-j32" emerge -q media-sound/alsa-utils
+      - sudo chroot /mnt/gentoo /bin/bash MAKEOPTS="-j32" emerge -q www-client/firefox
