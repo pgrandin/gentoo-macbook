@@ -20,6 +20,7 @@ dependencies:
       - sudo echo "nameserver 8.8.8.8" > /mnt/gentoo/etc/resolv.conf
       - sudo chroot /mnt/gentoo /bin/bash emerge-webrsync
       - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge -1 cmake
+      - sudo chroot /mnt/gentoo emerge -1 llvm
       - sudo chroot /mnt/gentoo emerge -q x11-wm/i3
       - sudo chroot /mnt/gentoo emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
       - sudo chroot /mnt/gentoo emerge -q media-sound/alsa-utils
