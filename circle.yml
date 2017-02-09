@@ -14,6 +14,8 @@ dependencies:
       - sudo touch /mnt/gentoo/dev/null
       - sudo chmod 0777 /mnt/gentoo/dev/null
       - sudo dd if=/dev/urandom of=/mnt/gentoo/dev/urandom count=512
+      - sudo sudo mkdir /mnt/gentoo/dev/shm
+      - sudo mount -t tmpfs -o nosuid,nodev,noexec shm /mnt/gentoo/dev/shm
       - sudo rsync -vrtza ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
       - sudo echo "nameserver 8.8.8.8" > /mnt/gentoo/etc/resolv.conf
       - sudo chroot /mnt/gentoo /bin/bash emerge-webrsync
