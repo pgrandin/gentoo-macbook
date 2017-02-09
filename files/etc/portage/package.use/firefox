@@ -1,0 +1,3 @@
+# required by www-client/firefox-45.7.0::gentoo[wifi]
+# required by firefox (argument)
+>=net-libs/gnutls-3.3.26 pkcs11
