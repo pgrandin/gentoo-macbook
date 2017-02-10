@@ -3,10 +3,8 @@ general:
       - "/mnt/gentoo/usr/portage/packages"
 dependencies:
     pre:
-      - wget -nv -c http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20170202.tar.bz2
       - sudo mkdir /mnt/gentoo
-# sudo tar xjpf /home/ubuntu/stage3-amd64-20170202.tar.bz2 -C /mnt/gentoo --exclude=./dev
-      - sudo tar xjpf ~/${CIRCLE_PROJECT_REPONAME}/stage3-amd64-20170202.tar.bz2 -C /mnt/gentoo; true
+      - bash fetch_stage3.sh
       - cd /mnt/gentoo; sudo patch -p0 < ~/$CIRCLE_PROJECT_REPONAME/emerge.patch
       - sudo mount -t proc /proc /mnt/gentoo/proc
       - sudo mount -t tmpfs tmps /mnt/gentoo/var/tmp
