@@ -19,11 +19,13 @@ dependencies:
       - sudo rsync -vrtza ~/${CIRCLE_PROJECT_REPONAME}/files/ /mnt/gentoo/
       - sudo echo "nameserver 8.8.8.8" > /mnt/gentoo/etc/resolv.conf
       - sudo chroot /mnt/gentoo /bin/bash emerge-webrsync
-      - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge -1 cmake llvm
+test:
+    override:
+      - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge -1 cmake llvm media-libs/mesa
       - sudo chroot /mnt/gentoo emerge -q x11-wm/i3
       - sudo chroot /mnt/gentoo emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
       - sudo chroot /mnt/gentoo emerge -q media-sound/alsa-utils
-      - sudo chroot /mnt/gentoo emerge -q media-sound/spotify
+      # - sudo chroot /mnt/gentoo emerge -q media-sound/spotify
       # - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
       # - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
       # - sudo chroot /mnt/gentoo emerge -q www-client/firefox
