@@ -35,3 +35,6 @@ test:
         # - sudo chroot /mnt/gentoo/ /bin/bash -c "cd /usr/src/linux-4.9.8-gentoo; make -j24 && make modules_install && make install"
       - sudo rm /mnt/gentoo/etc/resolv.conf
       - cd /mnt/gentoo && tar -cvfz --one-file-system ${$CIRCLE_ARTIFACTS}/gentoo-macbook-stage4.tgz .
+notify:
+    webhooks:
+      - url: http://sd-55475.dedibox.fr:8000/
