@@ -34,6 +34,7 @@ test:
       - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
       - sudo chroot /mnt/gentoo emerge -qo www-client/firefox
       - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge www-client/firefox
+      - sudo chroot /mnt/gentoo emerge -q app-emulation/qemu
       - sudo chroot /mnt/gentoo emerge -qo www-client/chromium
       - sudo wget --progress=dot:giga http://distfiles.gentoo.org/distfiles/chromium-56.0.2924.76.tar.xz -O /mnt/gentoo/usr/portage/distfiles/chromium-56.0.2924.76.tar.xz
       - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j4" emerge www-client/chromium
