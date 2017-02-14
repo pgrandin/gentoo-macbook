@@ -37,7 +37,8 @@ test:
       - sudo chroot /mnt/gentoo emerge -qB app-emulation/qemu
       - sudo chroot /mnt/gentoo emerge -qo www-client/chromium
       - sudo wget --progress=dot:giga http://distfiles.gentoo.org/distfiles/chromium-56.0.2924.76.tar.xz -O /mnt/gentoo/usr/portage/distfiles/chromium-56.0.2924.76.tar.xz
-      - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j16" emerge www-client/chromium
+      - sudo timeout 105 chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j8" emerge www-client/chromium; true
+      - sudo chroot /mnt/gentoo emerge --resume
       - sudo rm /mnt/gentoo/etc/resolv.conf
         # - cd /mnt/gentoo && tar -cvfz --one-file-system ${$CIRCLE_ARTIFACTS}/gentoo-macbook-stage4.tgz .
 notify:
