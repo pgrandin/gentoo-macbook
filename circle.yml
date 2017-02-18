@@ -27,6 +27,7 @@ test:
       - sudo chroot /mnt/gentoo emerge -q app-editors/vim app-misc/tmux dev-vcs/git
       - sudo chroot /mnt/gentoo emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
       - sudo chroot /mnt/gentoo emerge -q x11-wm/i3
+      - sudo chroot /mnt/gentoo emerge -q app-laptop/pommed
       - sudo chroot /mnt/gentoo emerge -q media-sound/alsa-utils
       - sudo chroot /mnt/gentoo emerge -q net-wireless/bluez net-wireless/rfkill
       # - sudo chroot /mnt/gentoo emerge -q media-sound/spotify
