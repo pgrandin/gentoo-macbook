@@ -34,7 +34,7 @@ test:
       # - sudo chroot /mnt/gentoo emerge -q app-text/calibre
       - sudo chroot /mnt/gentoo emerge -q app-pda/libimobiledevice app-pda/usbmuxd
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
-      - sudo chroot /mnt/gentoo emerge -q net-proxy/squid
+      - sudo chroot /mnt/gentoo emerge net-proxy/squid
       - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
       - sudo chroot /mnt/gentoo emerge -qo www-client/firefox
       - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge www-client/firefox
