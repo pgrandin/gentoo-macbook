@@ -32,6 +32,7 @@ test:
       - sudo chroot /mnt/gentoo emerge -q net-wireless/bluez net-wireless/rfkill
       # - sudo chroot /mnt/gentoo emerge -q media-sound/spotify
       # - sudo chroot /mnt/gentoo emerge -q app-text/calibre
+      - sudo chroot /mnt/gentoo emerge -q app-pda/libimobiledevice app-pda/usbmuxd
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
       - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
       - sudo chroot /mnt/gentoo emerge -qo www-client/firefox
