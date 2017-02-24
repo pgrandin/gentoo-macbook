@@ -24,23 +24,27 @@ test:
       - sudo chroot /mnt/gentoo /bin/bash -c "cd /usr/src/linux-4.9.8-gentoo; wget https://raw.githubusercontent.com/pgrandin/kernel-configs/master/MacBookPro2015 -O .config"
         # - sudo chroot /mnt/gentoo/ /bin/bash -c "cd /usr/src/linux-4.9.8-gentoo; make -j24 && make modules_install && make install"
       - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge -1 cmake llvm media-libs/mesa dev-libs/boost
+      # Essentials
       - sudo chroot /mnt/gentoo emerge -q app-editors/vim app-misc/tmux dev-vcs/git
       - sudo chroot /mnt/gentoo emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
+      - sudo chroot /mnt/gentoo emerge -q net-wireless/bluez net-wireless/rfkill
+      - sudo chroot /mnt/gentoo emerge -q media-sound/alsa-utils
+      # X and i3
       - sudo chroot /mnt/gentoo emerge -q x11-wm/i3
       - sudo chroot /mnt/gentoo emerge -q app-laptop/pommed
-      - sudo chroot /mnt/gentoo emerge -q media-sound/alsa-utils
-      - sudo chroot /mnt/gentoo emerge -q net-wireless/bluez net-wireless/rfkill
-      # - sudo chroot /mnt/gentoo emerge -q media-sound/spotify
-      # - sudo chroot /mnt/gentoo emerge -q app-text/calibre
-      - sudo chroot /mnt/gentoo emerge -q app-pda/libimobiledevice app-pda/usbmuxd
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
-      - sudo chroot /mnt/gentoo emerge net-proxy/squid
       - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
+      - sudo chroot /mnt/gentoo emerge -q app-pda/libimobiledevice app-pda/usbmuxd
+      - sudo chroot /mnt/gentoo emerge net-proxy/squid
+      # Web browsers
       - sudo chroot /mnt/gentoo emerge -qo www-client/firefox
       - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge www-client/firefox
       - sudo chroot /mnt/gentoo emerge -qo app-emulation/qemu
       - sudo chroot /mnt/gentoo emerge -qB app-emulation/qemu
       - sudo chroot /mnt/gentoo emerge -qo www-client/chromium
+      # QT ands deps
+      - sudo chroot /mnt/gentoo emerge -q qtcore:5 qtgui:5 qtwidgets:5 
+      # Cleanup and pack
       - sudo rm /mnt/gentoo/etc/resolv.conf
         # - cd /mnt/gentoo && tar -cvfz --one-file-system ${$CIRCLE_ARTIFACTS}/gentoo-macbook-stage4.tgz .
 notify:
