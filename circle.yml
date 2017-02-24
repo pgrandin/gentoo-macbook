@@ -30,7 +30,7 @@ test:
       - sudo chroot /mnt/gentoo emerge -q net-wireless/bluez net-wireless/rfkill
       - sudo chroot /mnt/gentoo emerge -q media-sound/alsa-utils
       # X and i3
-      - sudo chroot /mnt/gentoo emerge -q x11-wm/i3 x11-wm/i3lock x11-wm/i3status
+      - sudo chroot /mnt/gentoo emerge -q x11-wm/i3 x11-misc/i3lock x11-misc/i3status
       - sudo chroot /mnt/gentoo emerge -q app-laptop/pommed
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
       - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
