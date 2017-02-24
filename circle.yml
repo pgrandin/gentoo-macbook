@@ -44,7 +44,8 @@ test:
       - sudo chroot /mnt/gentoo emerge -qB app-emulation/qemu
       - sudo chroot /mnt/gentoo emerge -qo www-client/chromium
       # QT ands deps
-      - sudo chroot /mnt/gentoo emerge -q qtcore:5 qtgui:5 qtwidgets:5 
+      # qtcore:5 requires a valid /dev/null
+      - sudo chroot /mnt/gentoo emerge -q qtgui:5 qtwidgets:5
       # Cleanup and pack
       - sudo rm /mnt/gentoo/etc/resolv.conf
         # - cd /mnt/gentoo && tar -cvfz --one-file-system ${$CIRCLE_ARTIFACTS}/gentoo-macbook-stage4.tgz .
