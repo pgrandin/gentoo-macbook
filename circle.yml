@@ -25,12 +25,12 @@ test:
         # - sudo chroot /mnt/gentoo/ /bin/bash -c "cd /usr/src/linux-4.9.8-gentoo; make -j24 && make modules_install && make install"
       - sudo chroot /mnt/gentoo /usr/bin/env MAKEOPTS="-j1" emerge -1 cmake llvm media-libs/mesa dev-libs/boost
       # Essentials
-      - sudo chroot /mnt/gentoo emerge -q app-editors/vim app-misc/tmux dev-vcs/git
+      - sudo chroot /mnt/gentoo emerge -q app-editors/vim app-misc/tmux dev-vcs/git sys-devel/gdb
       - sudo chroot /mnt/gentoo emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
       - sudo chroot /mnt/gentoo emerge -q net-wireless/bluez net-wireless/rfkill
       - sudo chroot /mnt/gentoo emerge -q media-sound/alsa-utils
       # X and i3
-      - sudo chroot /mnt/gentoo emerge -q x11-wm/i3 x11-misc/i3lock
+      - sudo chroot /mnt/gentoo emerge -q x11-wm/i3 x11-misc/i3lock media-gfx/feh
       # x11-misc/i3status will fail because of Setting caps 'cap_net_admin=ep' on file '/usr/bin/i3status'
       - sudo chroot /mnt/gentoo emerge -q app-laptop/pommed
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
@@ -43,9 +43,6 @@ test:
       - sudo chroot /mnt/gentoo emerge -qo app-emulation/qemu
       - sudo chroot /mnt/gentoo emerge -qB app-emulation/qemu
       - sudo chroot /mnt/gentoo emerge -qo www-client/chromium
-      # QT ands deps
-      # qtcore:5 requires a valid /dev/null
-      - sudo chroot /mnt/gentoo emerge -q qtgui:5 qtwidgets:5
       # Cleanup and pack
       - sudo rm /mnt/gentoo/etc/resolv.conf
         # - cd /mnt/gentoo && tar -cvfz --one-file-system ${$CIRCLE_ARTIFACTS}/gentoo-macbook-stage4.tgz .
