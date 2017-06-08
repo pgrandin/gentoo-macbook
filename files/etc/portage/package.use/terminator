@@ -1,6 +1,0 @@
-# required by x11-terms/terminator-0.97-r1::gentoo
-# required by x11-terms/terminator (argument)
->=dev-libs/keybinder-0.3.1-r200:0 python
-# required by x11-terms/terminator-0.97-r1::gentoo
-# required by x11-terms/terminator (argument)
->=x11-libs/vte-0.28.2-r207:0 python
