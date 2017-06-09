@@ -35,6 +35,7 @@ test:
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
       - sudo chroot /mnt/gentoo emerge -q app-pda/libimobiledevice app-pda/usbmuxd
       - sudo chroot /mnt/gentoo emerge -q media-tv/kodi
+      - sudo chroot /mnt/gentoo emerge -q x11-base/xorg-server
       # Cleanup and pack
       - sudo rm /mnt/gentoo/etc/resolv.conf
         # - cd /mnt/gentoo && tar -cvfz --one-file-system ${$CIRCLE_ARTIFACTS}/gentoo-macbook-stage4.tgz .
