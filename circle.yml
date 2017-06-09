@@ -35,7 +35,8 @@ test:
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
       - sudo chroot /mnt/gentoo emerge -q app-pda/libimobiledevice app-pda/usbmuxd
       - sudo chroot /mnt/gentoo emerge -1 x11-libs/libXv
-      - sudo chroot /mnt/gentoo emerge -q media-tv/kodi
+      - sudo chroot /mnt/gentoo emerge -qo media-tv/kodi
+      - sudo chroot /mnt/gentoo emerge media-tv/kodi
       - sudo chroot /mnt/gentoo emerge -q x11-base/xorg-server
       # Cleanup and pack
       - sudo rm /mnt/gentoo/etc/resolv.conf
