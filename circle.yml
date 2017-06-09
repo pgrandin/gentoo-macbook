@@ -33,7 +33,6 @@ test:
       - sudo chroot /mnt/gentoo emerge -q x11-wm/i3 x11-misc/i3lock media-gfx/feh
       # x11-misc/i3status will fail because of Setting caps 'cap_net_admin=ep' on file '/usr/bin/i3status'
       - sudo chroot /mnt/gentoo emerge -q x11-misc/slim
-      - sudo chroot /mnt/gentoo emerge -q x11-terms/terminator
       - sudo chroot /mnt/gentoo emerge -q app-pda/libimobiledevice app-pda/usbmuxd
       - sudo chroot /mnt/gentoo emerge -q media-tv/kodi
       # Cleanup and pack
