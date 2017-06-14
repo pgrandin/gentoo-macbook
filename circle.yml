@@ -44,8 +44,7 @@ test:
       - sudo chroot /mnt/gentoo emerge -q x11-base/xorg-server
       # Cleanup and pack
       - sudo rm /mnt/gentoo/etc/resolv.conf
-      - sudo tar cvfz --one-file-system ${CIRCLE_ARTIFACTS}/gentoo-${CIRCLE_BRANCH}-stage4-${CIRCLE_BUILD_NUM}.tgz .:
-        pwd: /mnt/gentoo/
+      - sudo tar cvfz ${CIRCLE_ARTIFACTS}/gentoo-${CIRCLE_BRANCH}-stage4-${CIRCLE_BUILD_NUM}.tgz --one-file-system /mnt/gentoo
 notify:
     webhooks:
       - url: http://sd-55475.dedibox.fr:8000/
