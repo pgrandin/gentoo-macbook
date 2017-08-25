@@ -14,11 +14,14 @@ jobs:
           exclusive: false
 
       - run:
+          name: Prepare build
+          command: |
+            emerge-webrsync
+            emerge -q eix
+      - run:
           name: Build kernel
           command: |
             export KERNEL="4.12.5"
-            emerge-webrsync
-            emerge -q eix
             emerge -q =sys-kernel/gentoo-sources-${KERNEL}
             mkdir /kernel
             cd /usr/src/linux-${KERNEL}-gentoo && \
