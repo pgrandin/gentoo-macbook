@@ -16,6 +16,7 @@ jobs:
       - run:
           name: Prepare build
           command: |
+            rsync -vrtza ${CIRCLE_WORKING_DIRECTORY}/files/ /
             emerge-webrsync
             emerge -q eix
       - run:
