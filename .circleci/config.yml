@@ -9,9 +9,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - setup_remote_docker:
-          reusable: true
-          exclusive: false
+#       - setup_remote_docker:
+#           reusable: true
+#           exclusive: false
 
       - run:
           name: Prepare build
