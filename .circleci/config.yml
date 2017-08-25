@@ -10,16 +10,12 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-#       - setup_remote_docker:
-#           reusable: true
-#           exclusive: false
-
       - run:
           name: Prepare build
           command: |
             pwd
             ls ${CIRCLE_WORKING_DIRECTORY}
-            rsync -vrtza ${CIRCLE_PROJECT_REPONAME}/files/ /
+            rsync -vrtza ${CIRCLE_WORKING_DIRECTORY}/files/ /
             emerge-webrsync
             emerge -q eix
       - run:
