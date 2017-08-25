@@ -3,6 +3,7 @@ version: 2
 defaults: &defaults
   docker:
     - image: gentoo/stage3-amd64
+  working_directory: /ci
 
 jobs:
   build:
