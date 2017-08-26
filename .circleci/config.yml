@@ -62,7 +62,7 @@ jobs:
           name: Build firefox
           command: emerge -q www-client/firefox
       - store_artifacts:
-          
+          path: /usr/portage/packages/
       - run:
           name: Build thunderbird
           command: emerge -q mail-client/thunderbird
