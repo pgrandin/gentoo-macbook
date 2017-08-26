@@ -42,6 +42,9 @@ jobs:
       - store_artifacts:
           path: /usr/portage/packages/
       - run:
+          name: Build LLVM
+          command:  MAKEOPTS="-j1" emerge -q1 llvm
+      - run:
           name: Build basic X packages
           command: |
             emerge -q x11-misc/slim
@@ -59,7 +62,7 @@ jobs:
           name: Build firefox
           command: emerge -q www-client/firefox
       - store_artifacts:
-          path: /usr/portage/packages/
+          
       - run:
           name: Build thunderbird
           command: emerge -q mail-client/thunderbird
