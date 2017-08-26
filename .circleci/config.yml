@@ -43,7 +43,7 @@ jobs:
           path: /usr/portage/packages/
       - run:
           name: Build LLVM
-          command:  MAKEOPTS="-j1" emerge -q1 llvm
+          command: MAKEOPTS="-j1" emerge -q1 llvm
       - run:
           name: Build basic X packages
           command: |
