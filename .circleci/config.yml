@@ -33,14 +33,35 @@ jobs:
       - store_artifacts:
           path: /kernel
       - run:
-          name: Build packages
+          name: Build essential packages
           command: |
-            emerge -q app-editors/vim app-misc/tmux
+            emerge -q app-editors/vim app-misc/tmux app-admin/pass
             emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
             emerge -q net-wireless/bluez net-wireless/rfkill
             emerge -q media-sound/alsa-utils
+      - store_artifacts:
+          path: /usr/portage/packages/
+      - run:
+          name: Build basic X packages
+          command: |
             emerge -q x11-misc/slim
             emerge -q x11-base/xorg-server
             emerge -q x11-wm/i3 x11-misc/i3lock x11-misc/i3status
+            emerge -q terminator
+      - store_artifacts:
+          path: /usr/portage/packages/
+      - run:
+          name: Build devops stuff
+          command: emerge -q app-emulation/docker dev-python/boto3 dev-python/awscli
+      - store_artifacts:
+          path: /usr/portage/packages/
+      - run:
+          name: Build firefox
+          command: emerge -q www-client/firefox
+      - store_artifacts:
+          path: /usr/portage/packages/
+      - run:
+          name: Build thunderbird
+          command: emerge -q mail-client/thunderbird
       - store_artifacts:
           path: /usr/portage/packages/
