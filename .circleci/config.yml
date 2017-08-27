@@ -50,7 +50,7 @@ jobs:
           command: |
             emerge -q x11-misc/slim
             emerge -q x11-base/xorg-server
-            emerge -q x11-wm/i3 x11-misc/i3lock x11-misc/i3status
+            emerge -q x11-wm/i3 x11-misc/i3lock
             emerge -q terminator
       - store_artifacts:
           path: /usr/portage/packages/
