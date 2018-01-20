@@ -22,11 +22,7 @@ jobs:
           name: Prepare crossdev
           command: |
             emerge -q crossdev
-            mkdir -p /usr/local/portage-crossdev/{profiles,metadata}
-            echo 'crossdev' > /usr/local/portage-crossdev/profiles/repo_name
-            echo 'masters = gentoo' > /usr/local/portage-crossdev/metadata/layout.conf
-            chown -R portage:portage /usr/local/portage-crossdev
-            crossdev --stable -t x86_64-multilib-linux-gnu -oO /usr/local/portage-crossdev
+            crossdev --stable -t x86_64-multilib-linux-gnu
       - run:
           name: Build kernel
           command: |
