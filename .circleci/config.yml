@@ -22,7 +22,9 @@ jobs:
           name: Prepare crossdev
           command: |
             emerge -q crossdev
-            crossdev --stable -t x86_64-multilib-linux-gnu
+            mkdir /var/lib/crossdev
+            ln -s /etc/portage/make.profile /output/etc/portage/make.profile
+            PORTAGE_CONFIGROOT=/output MAKEOPTS="-j8" crossdev --stable -t x86_64-multilib-linux-gnu
       - run:
           name: Build kernel
           command: |
