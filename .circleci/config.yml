@@ -2,7 +2,8 @@ version: 2
 
 defaults: &defaults
   docker:
-    - image: gentoo/stage3-amd64
+    # - image: gentoo/stage3-amd64
+    - image: pgrandin/macbook
   working_directory: /ci
 
 jobs:
@@ -18,37 +19,48 @@ jobs:
             rsync -vrtza ${CIRCLE_WORKING_DIRECTORY}/files/ /
             emerge-webrsync
             emerge -q eix
-      - run:
-          name: Prepare crossdev
-          command: |
-            emerge -q crossdev
-            mkdir /var/lib/crossdev
-            ln -s /etc/portage/make.profile /output/etc/portage/make.profile
-            PORTAGE_CONFIGROOT=/output MAKEOPTS="-j8" crossdev --stable -t x86_64-multilib-linux-gnu
-          no_output_timeout: 1200
-      - run:
-          name: Build kernel
-          command: |
-            export KERNEL="4.14.14"
-            mkdir /etc/portage/package.keywords
-            echo "=sys-kernel/gentoo-sources-${KERNEL} ~amd64" >> /etc/portage/package.keywords/kernel
-            emerge -q =sys-kernel/gentoo-sources-${KERNEL}
-            mkdir /kernel
-            cd /usr/src/linux-${KERNEL}-gentoo && \
-                mkdir -p arch/x86_64/boot/ && \
-                wget https://raw.githubusercontent.com/pgrandin/kernel-configs/master/precision-5510 -O arch/x86/configs/precision_5510_defconfig  && \
-                wget https://github.com/pgrandin/kernel-configs/releases/download/4.12.5/precision-5510-${KERNEL} -O arch/x86_64/boot/bzImage || \
-                $(( make defconfig KBUILD_DEFCONFIG=precision_5510_defconfig && make -j24 && make modules_install INSTALL_MOD_PATH=/kernel/ ))
-            cp arch/x86_64/boot/bzImage /kernel/vmlinuz-${KERNEL}
-      - store_artifacts:
-          path: /kernel
+#     - restore_cache:
+#        keys:
+#          - v1-{{ .Environment.CIRCLE_JOB }}-crossdev-20171230
+#       - run:
+#           name: Prepare crossdev
+#           command: |
+#             emerge -qU crossdev
+#             [ -d /var/lib/crossdev ] || mkdir /var/lib/crossdev
+#             ln -sf /etc/portage/make.profile /output/etc/portage/make.profile
+#             PORTAGE_CONFIGROOT=/output MAKEOPTS="-j8" crossdev --stable -t x86_64-multilib-linux-gnu
+#             quickpkg cross-x86_64-multilib-linux-gnu/binutils
+#             quickpkg cross-x86_64-multilib-linux-gnu/gcc
+#             quickpkg cross-x86_64-multilib-linux-gnu/glibc
+#             quickpkg cross-x86_64-multilib-linux-gnu/linux-headers
+#           no_output_timeout: 1200
+#     - save_cache:
+#         key: v1-{{ .Environment.CIRCLE_JOB }}-crossdev-20171230
+#         paths:
+#           - "/usr/x86_64-multilib-linux-gnu/"
+#       - run:
+#           name: Build kernel
+#           command: |
+#             export KERNEL="4.14.14"
+#             mkdir /etc/portage/package.keywords
+#             echo "=sys-kernel/gentoo-sources-${KERNEL} ~amd64" >> /etc/portage/package.keywords/kernel
+#             emerge -q =sys-kernel/gentoo-sources-${KERNEL}
+#             mkdir /kernel
+#             cd /usr/src/linux-${KERNEL}-gentoo && \
+#                 mkdir -p arch/x86_64/boot/ && \
+#                 wget https://raw.githubusercontent.com/pgrandin/kernel-configs/master/precision-5510 -O arch/x86/configs/precision_5510_defconfig  && \
+#                 wget https://github.com/pgrandin/kernel-configs/releases/download/4.12.5/precision-5510-${KERNEL} -O arch/x86_64/boot/bzImage || \
+#                 $(( make defconfig KBUILD_DEFCONFIG=precision_5510_defconfig && make -j24 && make modules_install INSTALL_MOD_PATH=/kernel/ ))
+#             cp arch/x86_64/boot/bzImage /kernel/vmlinuz-${KERNEL}
+#       - store_artifacts:
+#           path: /kernel
       - run:
           name: Build essential packages
           command: |
-            emerge -q app-editors/vim app-misc/tmux app-admin/pass
-            emerge -q net-wireless/wpa_supplicant net-wireless/wireless-tools
-            emerge -q net-wireless/bluez net-wireless/rfkill
-            emerge -q media-sound/alsa-utils
+            ACCEPT_KEYWORDS="amd64" ARCH=x86_64 emerge-x86_64-multilib-linux-gnu -q app-editors/vim app-misc/tmux app-admin/pass
+            ACCEPT_KEYWORDS="amd64" ARCH=x86_64 emerge-x86_64-multilib-linux-gnu -q net-wireless/wpa_supplicant net-wireless/wireless-tools
+            ACCEPT_KEYWORDS="amd64" ARCH=x86_64 emerge-x86_64-multilib-linux-gnu -q net-wireless/bluez net-wireless/rfkill
+            ACCEPT_KEYWORDS="amd64" ARCH=x86_64 emerge-x86_64-multilib-linux-gnu -q media-sound/alsa-utils
       - store_artifacts:
           path: /usr/portage/packages/
       - run:
