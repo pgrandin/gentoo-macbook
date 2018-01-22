@@ -59,6 +59,7 @@ jobs:
           command: |
             rm /usr/x86_64-multilib-linux-gnu/etc/portage/make.profile
             ln -s /usr/portage/profiles/default/linux/amd64/13.0 /usr/x86_64-multilib-linux-gnu/etc/portage/make.profile
+            cp /portage/make.conf /usr/x86_64-multilib-linux-gnu/etc/portage/make.conf
             mkdir /usr/x86_64-multilib-linux-gnu/tmp/
             ROOT=/output/ SYSROOT=/usr/x86_64-multilib-linux-gnu/ x86_64-multilib-linux-gnu-emerge -q app-editors/vim app-misc/tmux app-admin/pass
             ACCEPT_KEYWORDS="amd64" ARCH=x86_64 emerge-x86_64-multilib-linux-gnu -q net-wireless/wpa_supplicant net-wireless/wireless-tools
