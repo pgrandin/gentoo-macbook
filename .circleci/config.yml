@@ -21,7 +21,6 @@ jobs:
           name: Build kernel
           command: |
             export KERNEL="4.17.9"
-            mkdir /etc/portage/package.keywords
             echo "=sys-kernel/gentoo-sources-${KERNEL} ~amd64" >> /etc/portage/package.keywords/kernel
             emerge -q =sys-kernel/gentoo-sources-${KERNEL}
             mkdir /kernel
