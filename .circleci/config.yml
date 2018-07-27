@@ -28,8 +28,7 @@ jobs:
                 mkdir -p arch/x86_64/boot/ && \
                 cat arch/x86/configs/x86_64_defconfig /ci/docker_defconfig /ci/precision_defconfig > arch/x86/configs/precision_defconfig  && \
                 make defconfig precision_defconfig && \
-                wget https://github.com/pgrandin/kernel-configs/releases/download/${KERNEL}/precision-5510-${KERNEL} -O arch/x86_64/boot/bzImage || \
-                $(( make -j24 && make modules_install INSTALL_MOD_PATH=/kernel/ ))
+                make -j24 && make modules_install INSTALL_MOD_PATH=/kernel/
             cp arch/x86_64/boot/bzImage /kernel/vmlinuz-${KERNEL}
       - store_artifacts:
           path: /kernel
