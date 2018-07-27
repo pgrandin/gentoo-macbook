@@ -33,6 +33,10 @@ jobs:
       - store_artifacts:
           path: /kernel
       - run:
+          name: Build packages
+          command: |
+            emerge -NDuvq @world
+      - run:
           name: Build essential packages
           command: |
             emerge -q app-editors/vim app-misc/tmux app-admin/pass
